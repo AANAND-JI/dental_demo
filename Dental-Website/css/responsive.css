@@ -1,0 +1,173 @@
+/* =========================================================
+   ToothWise Dental Clinic — responsive.css
+   All responsive / media-query rules live here.
+   Load AFTER style.css.
+   ========================================================= */
+
+/* =========================================================
+   RESPONSIVE / MEDIA QUERIES
+   ========================================================= */
+
+/* Large laptops */
+@media (max-width: 1100px) {
+    .services__grid { grid-template-columns: repeat(3, 1fr); }
+    .doctors__grid  { grid-template-columns: repeat(2, 1fr); }
+    .nav-link       { padding: 8px 10px; }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+    :root { --section-py: 72px; }
+
+    /* Mobile nav */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(320px, 82vw);
+        height: 100vh;
+        background: #fff;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding: 110px 26px 40px;
+        box-shadow: var(--shadow-lg);
+        transition: right var(--transition);
+        overflow-y: auto;
+    }
+    .nav-menu.open { right: 0; }
+    .nav-link {
+        display: block;
+        padding: 14px 12px;
+        border-radius: 10px;
+        font-size: 1.05rem;
+    }
+    .nav-link::after { display: none; }
+    .nav-link:hover,
+    .nav-link.active { background: rgba(30, 144, 255, 0.08); }
+    .hamburger { display: flex; }
+    .nav-cta { display: none; }
+
+    /* About */
+    .about__grid { grid-template-columns: 1fr; gap: 70px; }
+    .feature-list { grid-template-columns: 1fr 1fr; }
+
+    /* Grids */
+    .why__grid   { grid-template-columns: repeat(2, 1fr); }
+    .stats__grid { grid-template-columns: repeat(2, 1fr); gap: 40px 20px; }
+    .stat:nth-child(2)::after { display: none; }
+    .contact__grid { grid-template-columns: 1fr; }
+    .blog__grid  { grid-template-columns: 1fr 1fr; }
+    .gallery__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Small tablets / large phones */
+@media (max-width: 720px) {
+    .topbar__inner { justify-content: center; text-align: center; }
+    .services__grid { grid-template-columns: repeat(2, 1fr); }
+    .blog__grid { grid-template-columns: 1fr; }
+    .testimonial { padding: 32px 22px; }
+    .stat:not(:last-child)::after { display: none; }
+}
+
+/* Phones */
+@media (max-width: 560px) {
+    :root { --section-py: 56px; }
+
+    .container { padding: 0 18px; }
+    .hero { min-height: 92vh; }
+    .hero__actions { flex-direction: column; align-items: stretch; }
+    .hero__actions .btn { width: 100%; }
+
+    .services__grid,
+    .why__grid,
+    .doctors__grid,
+    .gallery__grid { grid-template-columns: 1fr; }
+
+    .stats__grid { grid-template-columns: 1fr; }
+    .feature-list { grid-template-columns: 1fr; }
+
+    .form-row { grid-template-columns: 1fr; }
+    .contact__form-wrap { padding: 26px 20px; }
+
+    .footer__grid { grid-template-columns: 1fr; gap: 34px; }
+    .footer__bottom-inner { flex-direction: column; text-align: center; }
+
+    .about__experience {
+        bottom: -22px;
+        padding: 12px 20px;
+    }
+    .lightbox__nav--prev { left: 12px; }
+    .lightbox__nav--next { right: 12px; }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+    .topbar { font-size: 0.8rem; }
+    .brand { font-size: 1.4rem; }
+    .btn { padding: 12px 22px; }
+}
+
+/* =========================================================
+   MULTI-PAGE COMPONENT RESPONSIVENESS
+   ========================================================= */
+
+/* Mobile dropdown behaviour inside off-canvas menu */
+@media (max-width: 900px) {
+    .split            { grid-template-columns: 1fr; gap: 34px; }
+    .split .section-title { text-align: left; }
+    .mvv__grid        { grid-template-columns: 1fr; }
+    .testimonials-grid{ grid-template-columns: 1fr 1fr; }
+    .pricing__grid    { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+    .price-card--popular { transform: none; }
+    .layout           { grid-template-columns: 1fr; }
+    .sidebar          { position: static; }
+    .doctor-profile   { grid-template-columns: 1fr; }
+    .form-grid-3      { grid-template-columns: 1fr 1fr; }
+
+    /* Timeline collapses to single side */
+    .timeline::before { left: 20px; }
+    .timeline__item,
+    .timeline__item:nth-child(odd),
+    .timeline__item:nth-child(even) {
+        width: 100%;
+        left: 0;
+        text-align: left;
+        padding-left: 56px;
+        padding-right: 0;
+    }
+    .timeline__item:nth-child(odd)::after,
+    .timeline__item:nth-child(even)::after {
+        left: 12px;
+        right: auto;
+    }
+
+    /* Dropdown appears inline within mobile menu */
+    .has-dropdown .dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        padding: 0 0 0 12px;
+        min-width: auto;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--transition);
+    }
+    .has-dropdown.open .dropdown { max-height: 400px; }
+    .has-dropdown > .nav-link { justify-content: space-between; width: 100%; }
+}
+
+@media (max-width: 720px) {
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .info-grid         { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+    .form-grid-3       { grid-template-columns: 1fr; }
+    .appointment-form  { padding: 26px 20px; }
+    .comment--reply    { margin-left: 24px; }
+    .page-banner       { padding: 60px 0; }
+}

@@ -67,6 +67,8 @@
     function mobileMenu() {
         const burger = $("#hamburger");
         const menu = $("#nav-menu");
+        const backdrop = $("#mobile-nav-backdrop");
+        const closeBtn = $(".mobile-nav-close");
         if (!burger || !menu) return;
 
         const toggle = (open) => {
@@ -76,9 +78,22 @@
             burger.setAttribute("aria-expanded", String(willOpen));
             document.body.classList.toggle("menu-open", willOpen);
             document.body.style.overflow = willOpen ? "hidden" : "";
+
+            if (backdrop) {
+                backdrop.classList.toggle("visible", willOpen);
+                backdrop.setAttribute("aria-hidden", String(!willOpen));
+            }
         };
 
         burger.addEventListener("click", () => toggle());
+
+        if (closeBtn) {
+            closeBtn.addEventListener("click", () => toggle(false));
+        }
+
+        if (backdrop) {
+            backdrop.addEventListener("click", () => toggle(false));
+        }
 
         /* Close when a real (non-dropdown-toggle) link is clicked */
         $$(".nav-menu a", menu).forEach((link) =>
@@ -95,7 +110,8 @@
             if (
                 menu.classList.contains("open") &&
                 !menu.contains(e.target) &&
-                !burger.contains(e.target)
+                !burger.contains(e.target) &&
+                !(backdrop && backdrop.contains(e.target))
             ) {
                 toggle(false);
             }

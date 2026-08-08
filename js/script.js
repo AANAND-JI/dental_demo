@@ -98,6 +98,8 @@
 
             backdrop.classList.toggle("visible", willOpen);
             backdrop.setAttribute("aria-hidden", String(!willOpen));
+            backdrop.style.pointerEvents = "none";
+            backdrop.style.display = willOpen ? "block" : "none";
         };
 
         burger.addEventListener("click", () => toggle());

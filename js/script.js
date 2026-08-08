@@ -67,9 +67,26 @@
     function mobileMenu() {
         const burger = $("#hamburger");
         const menu = $("#nav-menu");
-        const backdrop = $("#mobile-nav-backdrop");
-        const closeBtn = $(".mobile-nav-close");
         if (!burger || !menu) return;
+
+        let backdrop = $("#mobile-nav-backdrop");
+        if (!backdrop) {
+            backdrop = document.createElement("div");
+            backdrop.id = "mobile-nav-backdrop";
+            backdrop.className = "mobile-nav-backdrop";
+            backdrop.setAttribute("aria-hidden", "true");
+            document.body.appendChild(backdrop);
+        }
+
+        let closeBtn = menu.querySelector(".mobile-nav-close");
+        if (!closeBtn) {
+            closeBtn = document.createElement("button");
+            closeBtn.type = "button";
+            closeBtn.className = "mobile-nav-close";
+            closeBtn.setAttribute("aria-label", "Close menu");
+            closeBtn.innerHTML = "&times;";
+            menu.prepend(closeBtn);
+        }
 
         const toggle = (open) => {
             const willOpen = typeof open === "boolean" ? open : !menu.classList.contains("open");
@@ -79,21 +96,14 @@
             document.body.classList.toggle("menu-open", willOpen);
             document.body.style.overflow = willOpen ? "hidden" : "";
 
-            if (backdrop) {
-                backdrop.classList.toggle("visible", willOpen);
-                backdrop.setAttribute("aria-hidden", String(!willOpen));
-            }
+            backdrop.classList.toggle("visible", willOpen);
+            backdrop.setAttribute("aria-hidden", String(!willOpen));
         };
 
         burger.addEventListener("click", () => toggle());
 
-        if (closeBtn) {
-            closeBtn.addEventListener("click", () => toggle(false));
-        }
-
-        if (backdrop) {
-            backdrop.addEventListener("click", () => toggle(false));
-        }
+        closeBtn.addEventListener("click", () => toggle(false));
+        backdrop.addEventListener("click", () => toggle(false));
 
         /* Close when a real (non-dropdown-toggle) link is clicked */
         $$(".nav-menu a", menu).forEach((link) =>
@@ -111,7 +121,7 @@
                 menu.classList.contains("open") &&
                 !menu.contains(e.target) &&
                 !burger.contains(e.target) &&
-                !(backdrop && backdrop.contains(e.target))
+                !backdrop.contains(e.target)
             ) {
                 toggle(false);
             }

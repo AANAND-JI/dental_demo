@@ -30,6 +30,145 @@
 /* =========================================================
    1. DESIGN TOKENS
    ========================================================= */
+/* =================================
+   PREMIUM GOLD OUR DESIGNS BADGE
+================================= */
+
+.nav-portfolio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 12px 22px;
+
+    color: #14213d !important;
+    font-size: 14px;
+    font-weight: 800;
+    text-decoration: none;
+
+    /* Gold foil effect */
+    background:
+        linear-gradient(
+            115deg,
+            #b8860b 0%,
+            #f7d774 18%,
+            #fff1a8 35%,
+            #d4a72c 52%,
+            #ffe89a 70%,
+            #b8860b 100%
+        );
+
+    /* Scalloped / seal shape */
+    clip-path: polygon(
+        50% 0%,
+        54% 4%,
+        58% 1%,
+        62% 6%,
+        66% 3%,
+        70% 9%,
+        74% 7%,
+        77% 13%,
+        82% 11%,
+        84% 17%,
+        89% 16%,
+        90% 22%,
+        95% 23%,
+        94% 29%,
+        99% 32%,
+        97% 38%,
+        100% 42%,
+        97% 47%,
+        100% 52%,
+        97% 57%,
+        99% 62%,
+        95% 65%,
+        97% 71%,
+        92% 73%,
+        94% 79%,
+        89% 80%,
+        90% 86%,
+        84% 84%,
+        82% 90%,
+        77% 87%,
+        74% 93%,
+        70% 91%,
+        66% 97%,
+        62% 94%,
+        58% 99%,
+        54% 96%,
+        50% 100%,
+        46% 96%,
+        42% 99%,
+        38% 94%,
+        34% 97%,
+        30% 91%,
+        26% 93%,
+        23% 87%,
+        18% 90%,
+        16% 84%,
+        11% 86%,
+        10% 80%,
+        5% 79%,
+        7% 73%,
+        2% 71%,
+        4% 65%,
+        0% 62%,
+        3% 57%,
+        0% 52%,
+        3% 47%,
+        0% 42%,
+        3% 38%,
+        1% 32%,
+        6% 29%,
+        5% 23%,
+        10% 22%,
+        11% 16%,
+        16% 17%,
+        18% 11%,
+        23% 13%,
+        26% 7%,
+        30% 9%,
+        34% 3%,
+        38% 6%,
+        42% 1%,
+        46% 4%
+    );
+
+    box-shadow: 0 6px 18px rgba(184, 134, 11, 0.28);
+
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Star */
+.nav-portfolio span {
+    font-size: 12px;
+    color: #7a5700;
+}
+
+/* Hover */
+.nav-portfolio:hover {
+    color: #111d35 !important;
+    transform: translateY(-3px) scale(1.03);
+    filter: brightness(1.08);
+    box-shadow: 0 10px 25px rgba(184, 134, 11, 0.38);
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 900px) {
+
+    .nav-portfolio {
+        width: 100%;
+        padding: 15px 20px;
+        margin: 8px 0;
+
+        font-size: 16px;
+    }
+}
 :root {
     /* Colors */
     --primary: #1E90FF;
